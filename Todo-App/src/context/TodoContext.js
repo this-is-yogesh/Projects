@@ -9,10 +9,10 @@ export const TodoContext = createContext({
       completed: false,
     },
   ],
-  addTodo: () => {},
-  deleteTodo: () => {},
-  toggleTodo: () => {},
-  editTodo: () => {},
+  addTodo: (todo) => {},
+  deleteTodo: (id) => {},
+  toggleTodo: (id) => {},
+  editTodo: (id,todo) => {},
 });
 export const TodoContextProvider = TodoContext.Provider;
 export const useTodo = () => {
