@@ -1,10 +1,11 @@
 import { createContext, useContext } from "react";
 
 export const TodoContext = createContext({
-  todo: [
+    //declared the gloabal states here
+  todos: [
     {
       id: 1,
-      todomsg: "message",
+      todo: "message",
       completed: false,
     },
   ],
