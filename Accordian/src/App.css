@@ -1,0 +1,40 @@
+.parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2%;
+}
+.outerbox {
+  border: 1px solid white;
+  background-color: brown;
+  margin: 10px;
+  text-align: left;
+  padding-left: 10px;
+  width: 50%;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+h1 {
+  text-align: center;
+  box-shadow: aliceblue;
+}
+
+p {
+  display: flex;
+}
+span {
+  padding: 1%;
+  cursor: pointer;
+}
+
+button {
+  text-align: center;
+  padding: 10px 10px;
+  font-weight: bolder;
+  font-size: 1rem;
+  font-family: "Times New Roman", Times, serif;
+  cursor: pointer;
+}
