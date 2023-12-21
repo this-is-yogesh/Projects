@@ -22,7 +22,7 @@ function App() {
   };
 
   const dataset = () => {
-    console.log(data, "dataset");
+
     setAll(!all);
     setData(new Set());
   };

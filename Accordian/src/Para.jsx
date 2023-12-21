@@ -2,8 +2,6 @@ import React from "react";
 import "./App.css";
 
 function Para({ id, handleclick, index, data }) {
-    if(data.size )
-    console.log(data,"DATA")
   return (
     <div className="outerbox">
       {id === index || (data && data.has(index)) ? (
