@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import { data } from "./data";
+import { useEffect } from "react";
+import { FaArrowLeft, FaArrowRight, FaCircle } from "react-icons/fa";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [da, setData] = useState([]);
+  const [current, setCurrent] = useState(0);
 
+  useEffect(() => {
+    setData(data);
+    setCurrent(1);
+  }, []);
+
+  function handleslideleft(id) {
+    setCurrent(id === 0 ? data.length - 1 : id - 1);
+  }
+
+  function handleslideright(id) {
+    setCurrent(id === data.length - 1 ? 0 : id + 1);
+  }
+
+  function handleclick(id) {
+    setCurrent(id);
+  }
+  console.log(current, "current");
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="main">
+      <FaArrowLeft className="left" onClick={() => handleslideleft(current)} />
+      <div className="imagebox">
+        {da.map((d, index) => (
+          <>
+            <div className="image">
+              <img
+                src={d.url}
+                alt="img"
+                key={d.id}
+                hidden={index !== current}
+              />
+            </div>
+          </>
+        ))}
+        <div className="circle">
+          {da.map((_, index) => (
+            <FaCircle
+              className={index === current ? "active" : ""}
+              onClick={() => handleclick(index)}
+            />
+          ))}
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      <FaArrowRight
+        className="right"
+        onClick={() => handleslideright(current)}
+      />
+    </div>
+  );
 }
 
-export default App
+export default App;
