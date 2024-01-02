@@ -6,11 +6,10 @@ import { FaArrowLeft, FaArrowRight, FaCircle } from "react-icons/fa";
 
 function App() {
   const [da, setData] = useState([]);
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(1);
 
   useEffect(() => {
     setData(data);
-    setCurrent(1);
   }, []);
 
   function handleslideleft(id) {
@@ -24,7 +23,7 @@ function App() {
   function handleclick(id) {
     setCurrent(id);
   }
-  console.log(current, "current");
+ 
   return (
     <div className="main">
       <FaArrowLeft className="left" onClick={() => handleslideleft(current)} />
