@@ -7,7 +7,7 @@ function App({data}) {
 
   return (
       <div>
-        <Parent data = {menus}/>
+        <Parent data= {menus}/>
       </div>
 
   );
