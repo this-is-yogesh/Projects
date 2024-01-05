@@ -9,13 +9,22 @@ function App() {
   const handlesubmit = (e) => {
     e.preventDefault();
     setQR(value);
+    setValue("");
   };
+
+  function handlereset() {
+    setQR(null);
+  }
   return (
     <div className="qr-code">
       <h2>QR-Code-Generator</h2>
       <form onSubmit={handlesubmit} className="form">
-        <input onChange={(e) => setValue(e.target.value)} value={value}type="text" />
-        <button onClick={handlesubmit}>Submit </button>
+        <input
+          onChange={(e) => setValue(e.target.value)}
+          value={value}
+          type="text"
+        />
+        <button onClick={handlereset}> Reset QR_CODE</button>
       </form>
       <div
         style={{
@@ -27,10 +36,10 @@ function App() {
       >
         {qrvalue && (
           <QRCode
-          size={256}
-          style={{ height: "100%", maxWidth: "500px", width: "100%" }}
-          value={qrvalue}
-          viewBox={`0 0 256 256`}
+            size={256}
+            style={{ height: "100%", maxWidth: "500px", width: "100%" }}
+            value={qrvalue}
+            viewBox={`0 0 256 256`}
           />
         )}
       </div>
