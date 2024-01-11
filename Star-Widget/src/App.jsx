@@ -1,69 +1,39 @@
 import { useState } from "react";
-import "primeicons/primeicons.css";
-import "./App.css";
+import { FaStar } from "react-icons/fa";
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-  const [hover, setHover] = useState(false);
-  const [filled, setFilled] = useState([]);
-  const [index,setIndex] = useState(0);
-  const [ click,setClick] = useState(0)
+export default function StarRating({ noOfStars = 5 }) {
+  const [rating, setRating] = useState(0);
+  const [hover, setHover] = useState(0);
 
-  const handlemouseenter = (i) => {
-    setIndex(i)
-    let cnt = 0;
-    let arr = count;
-    while (cnt < i) {
-      arr[cnt] = 0;
-      cnt++;
-    }
-    setCount(arr);
-    setFilled(arr);
-    setHover(true);
-  };
+  function handleClick(getCurrentIndex) {
+    setRating(getCurrentIndex);
+  }
 
-  const handlemouseleave = () => {
-    let i = click  ;
+  function handleMouseEnter(getCurrentIndex) {
+    setHover(getCurrentIndex);
+  }
 
-    let arr = count;
-    while(i < count.length){
-        arr[i] = i;
-        i++;
-    }
-    setCount(arr);
-    //setCount([1,2,3,4,5,6,7,8,9,10]);
-  };
+  function handleMouseLeave() {
+    setHover(rating);
+  }
 
-  const handleclick = () => {
-    setClick(index);
-    let cnt = 0;
-    let arr = count;
-    while (cnt < index) {
-      arr[cnt] = 0;
-      cnt++;
-    }
-    setCount(arr);
-    setFilled(arr);
-   
-  };
   return (
-    <>
-      <div className="stars">
-        {count.map((ie, index) => (
-          <i
-            className={ie === 0 ? "pi pi-star-fill" : "pi pi-star"}
-            onClick={() => handleclick(ie)}
-            onMouseEnter={() => handlemouseenter(ie)}
-            onMouseLeave={handlemouseleave}
-            style={{ fontSize: "2rem" }}
+    <div className="star-rating">
+      {[...Array(noOfStars)].map((_, index) => {
+        index += 1;
+
+        return (
+          <FaStar
             key={index}
-          >
-            {" "}
-          </i>
-        ))}
-      </div>
-    </>
+            className={index <= (hover || rating) ? "active" : "inactive"}
+            onClick={() => handleClick(index)}
+            onMouseMove={() => handleMouseEnter(index)}
+            onMouseLeave={() => handleMouseLeave()}
+            size={40}
+          />
+        );
+      })}
+    </div>
   );
 }
-
-export default App;
