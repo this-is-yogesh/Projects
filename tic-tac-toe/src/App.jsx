@@ -8,10 +8,14 @@ function App() {
   const [values, setValues] = useState(new Array(9).fill(""));
   const [winner, setWinner] = useState("");
   const [caption, setCaption] = useState("");
+  const [player, setPlayer] = useState(true);
+  const [playset, setPlaySet] = useState(null);
 
   function handleclick(id) {
+    if (playset === null) return;
     let squares = [...values];
     if (checkwinner(squares) || squares[id]) return;
+    setPlaySet(!playset);
     squares[id] = status ? "X" : "O";
     setValues(squares);
     setStaus(!status);
@@ -43,18 +47,34 @@ function App() {
     return false;
   }
 
+  function handleplayer(e) {
+    if (e === "Muskaan") {
+      setPlaySet(true);
+    } else {
+      setPlaySet(false);
+    }
+    setPlayer(false);
+  }
   useEffect(() => {
     if (!checkwinner(values) && values.every((i) => i !== ""))
       setCaption("This is draw");
     else if (checkwinner(values)) {
-      setCaption(`${checkwinner(values)} is Winner`);
+      setCaption(`${playset === true ? "Muskaan" : "Yogesh"} is Winner`);
     } else {
-      setCaption(`Next player is - ${status === true ? "X" : "O"} `);
+      if (playset === null) return;
+      setCaption(
+        `${playset === true ? "Muskaan" : "Yogesh"} Chance- ${
+          status === true ? "X" : "O"
+        } `
+      );
     }
-  }, [values, status]);
+  }, [values, status, playset]);
 
   function handlereset() {
     setValues(new Array(9).fill(""));
+    setPlayer(true);
+    setPlaySet(null);
+    setCaption("");
   }
   return (
     <>
@@ -75,8 +95,17 @@ function App() {
           <Square handleclick={() => handleclick(8)} value={values[8]} />
         </div>
       </div>
-      {checkwinner(values) && <button onClick={handlereset}> Reset</button>}
+      {(checkwinner(values) || caption === "This is draw") && (
+        <button onClick={handlereset}> Reset</button>
+      )}
       <span>{caption}</span>
+      {player && (
+        <div>
+          {`Who will start`}
+          <button onClick={() => handleplayer("Muskaan")}>Muskaan</button>
+          <button onClick={() => handleplayer("Yogesh")}>Yogesh</button>
+        </div>
+      )}
     </>
   );
 }
