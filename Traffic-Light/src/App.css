@@ -40,3 +40,21 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.wrapper{
+  width: 100px;
+  height: 400px;
+  background-color: black;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  gap: 10%;
+}
+
+.traffic-light{
+  border-radius: 50%;
+  width: 80%;
+  height: 80%;
+  margin: 10%;
+}
