@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const SinglePostPage = () => {
-  return (
-    <div>SinglePostPage
+  return <div>SinglePostPage</div>;
+};
 
-    </div>
-  )
-}
-
-export default SinglePostPage
+export default SinglePostPage;
