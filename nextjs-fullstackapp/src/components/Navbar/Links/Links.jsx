@@ -8,6 +8,8 @@ const Links = () => {
     { page: "Contact", path: "/contact" },
     { page: "Blog", path: "/blog" },
   ];
+
+  console.log(links,"links");
   return (
     <div>
       {links.map((link) => (
